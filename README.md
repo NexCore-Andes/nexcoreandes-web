@@ -53,13 +53,13 @@ rompe: vuelve a mostrar las publicaciones de respaldo.
 
 ## Publicar (Hostinger · Docker Manager)
 
-El VPS descarga el código desde GitHub y arma el sitio con el `Dockerfile`.
+El contenedor usa la imagen pública `node:22-alpine`: al arrancar baja el código de GitHub, arma el sitio y lo sirve en el puerto 3000.
 
 1. Creá un token de GitHub de solo lectura: GitHub → Settings → Developer settings → Personal access tokens →
    **Fine-grained tokens** → Generate new token. Resource owner: **NexCore-Andes**; Repository access:
    **Only select repositories** → `nexcoreandes-web`; Permissions → **Contents: Read-only**.
 2. En Hostinger → Docker Manager → Crear proyecto → **Editor .yaml**, pegá `docker-compose.yml`, reemplazá
    `TU_TOKEN` por el token y desplegá. El primer despliegue tarda unos minutos porque arma el sitio.
-3. Para actualizar después de un cambio: subilo a `main` y en Hostinger tocá **Redesplegar** (o reconstruir).
+3. Para actualizar después de un cambio: subilo a `main` y en Hostinger reiniciá o redesplegá el proyecto (vuelve a bajar el código).
 
 El token queda solo en tu VPS. No lo subas al repositorio ni lo pegues en chats.

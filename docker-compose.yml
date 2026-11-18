@@ -1,14 +1,19 @@
 # Proyecto para el Docker Manager de Hostinger (pegar en "Editor .yaml").
-# El VPS descarga el código de GitHub y arma el sitio ahí mismo con el Dockerfile.
-# TU_TOKEN = token de GitHub de solo lectura para este repositorio (ver README).
+# Usa solo la imagen pública de Node: al arrancar, baja el código de GitHub, arma el sitio y lo sirve.
+# Para actualizar el sitio después de un cambio en GitHub: reiniciá o redesplegá el proyecto.
+# TU_TOKEN = token de GitHub de solo lectura para este repositorio (ver README). No lo subas al repo.
 services:
   web:
-    build:
-      context: https://TU_TOKEN@github.com/NexCore-Andes/nexcoreandes-web.git#main
+    image: node:22-alpine
     container_name: nexcoreandes-web
     restart: unless-stopped
+    working_dir: /srv
     ports:
       - "80:3000"   # si el puerto 80 ya lo usa otro proyecto, cambialo, por ejemplo "8080:3000"
-    environment:
-      NODE_ENV: production
-      # INSTAGRAM_ACCESS_TOKEN: pegá acá el token cuando reactives la sección de Instagram
+    command: >
+      sh -c "apk add --no-cache git &&
+      rm -rf /srv/sitio &&
+      git clone --depth 1 https://TU_TOKEN@github.com/NexCore-Andes/nexcoreandes-web.git /srv/sitio &&
+      cd /srv/sitio && npm ci && npm run build &&
+      cp -r public .next/standalone/ && cp -r .next/static .next/standalone/.next/ &&
+      HOSTNAME=0.0.0.0 PORT=3000 NODE_ENV=production node .next/standalone/server.js"
