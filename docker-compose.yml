@@ -1,0 +1,12 @@
+# Proyecto para el Docker Manager de Hostinger (pegar en "Editor .yaml").
+# La imagen la arma GitHub Actions en cada cambio a main (.github/workflows/docker.yml).
+services:
+  web:
+    image: ghcr.io/nexcore-andes/nexcoreandes-web:latest
+    container_name: nexcoreandes-web
+    restart: unless-stopped
+    ports:
+      - "80:3000"   # si el puerto 80 ya lo usa otro proyecto, cambialo, por ejemplo "8080:3000"
+    environment:
+      NODE_ENV: production
+      # INSTAGRAM_ACCESS_TOKEN: pegá acá el token cuando reactives la sección de Instagram
