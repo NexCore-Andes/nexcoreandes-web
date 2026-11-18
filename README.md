@@ -53,12 +53,13 @@ rompe: vuelve a mostrar las publicaciones de respaldo.
 
 ## Publicar (Hostinger · Docker Manager)
 
-1. Cada cambio que se sube a `main` dispara GitHub Actions (`.github/workflows/docker.yml`), que arma la imagen
-   `ghcr.io/nexcore-andes/nexcoreandes-web:latest`.
-2. En Hostinger → Docker Manager → Crear proyecto → **Editor .yaml**, pegá el contenido de `docker-compose.yml` y desplegá.
-3. Para actualizar el sitio después de un cambio: esperá que termine la Action y en Hostinger tocá **Redesplegar**
-   (vuelve a bajar la imagen `latest`).
+El VPS descarga el código desde GitHub y arma el sitio con el `Dockerfile`.
 
-La imagen tiene que poder descargarse desde el VPS: o el paquete es público
-(GitHub → organización → Packages → nexcoreandes-web → Package settings → Change visibility → Public),
-o en el VPS se hace `docker login ghcr.io` con un token que tenga permiso `read:packages`.
+1. Creá un token de GitHub de solo lectura: GitHub → Settings → Developer settings → Personal access tokens →
+   **Fine-grained tokens** → Generate new token. Resource owner: **NexCore-Andes**; Repository access:
+   **Only select repositories** → `nexcoreandes-web`; Permissions → **Contents: Read-only**.
+2. En Hostinger → Docker Manager → Crear proyecto → **Editor .yaml**, pegá `docker-compose.yml`, reemplazá
+   `TU_TOKEN` por el token y desplegá. El primer despliegue tarda unos minutos porque arma el sitio.
+3. Para actualizar después de un cambio: subilo a `main` y en Hostinger tocá **Redesplegar** (o reconstruir).
+
+El token queda solo en tu VPS. No lo subas al repositorio ni lo pegues en chats.

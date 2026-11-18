@@ -1,8 +1,10 @@
 # Proyecto para el Docker Manager de Hostinger (pegar en "Editor .yaml").
-# La imagen la arma GitHub Actions en cada cambio a main (.github/workflows/docker.yml).
+# El VPS descarga el código de GitHub y arma el sitio ahí mismo con el Dockerfile.
+# TU_TOKEN = token de GitHub de solo lectura para este repositorio (ver README).
 services:
   web:
-    image: ghcr.io/nexcore-andes/nexcoreandes-web:latest
+    build:
+      context: https://TU_TOKEN@github.com/NexCore-Andes/nexcoreandes-web.git#main
     container_name: nexcoreandes-web
     restart: unless-stopped
     ports:
