@@ -51,6 +51,14 @@ https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&acc
 Si la respuesta trae un token distinto, reemplazalo en `.env.local` y en Vercel. Si el token vence, el sitio no se
 rompe: vuelve a mostrar las publicaciones de respaldo.
 
-## Publicar
+## Publicar (Hostinger · Docker Manager)
 
-La forma más simple es [Vercel](https://vercel.com): importás el repositorio y lo despliega solo.
+1. Cada cambio que se sube a `main` dispara GitHub Actions (`.github/workflows/docker.yml`), que arma la imagen
+   `ghcr.io/nexcore-andes/nexcoreandes-web:latest`.
+2. En Hostinger → Docker Manager → Crear proyecto → **Editor .yaml**, pegá el contenido de `docker-compose.yml` y desplegá.
+3. Para actualizar el sitio después de un cambio: esperá que termine la Action y en Hostinger tocá **Redesplegar**
+   (vuelve a bajar la imagen `latest`).
+
+La imagen tiene que poder descargarse desde el VPS: o el paquete es público
+(GitHub → organización → Packages → nexcoreandes-web → Package settings → Change visibility → Public),
+o en el VPS se hace `docker login ghcr.io` con un token que tenga permiso `read:packages`.
