@@ -40,7 +40,6 @@ export default function Services() {
   return (
     <section className="section services" id="servicios">
       <div className="section__head">
-        <p className="kicker mono reveal">01 / servicios</p>
         <h2 className="section__title reveal">Soluciones digitales para <span className="grad">tu negocio</span>.</h2>
         <p className="section__lead reveal">Elegí un servicio para ver qué incluye. Podés consultarnos por uno o combinar varios: armamos la solución a tu medida.</p>
       </div>
@@ -56,9 +55,9 @@ export default function Services() {
                 onClick={() => { setCurrent(i); setOpen(open === i ? null : i); }}
                 onMouseEnter={() => { if (finePointer.current && window.innerWidth > 980) setCurrent(i); }}
               >
-                <ServiceIcon name={svc.icon} />
-                <span className="t">{svc.title}</span>
                 <span className="n">{pad(i + 1)}</span>
+                <span className="t">{svc.title}</span>
+                <span className="arr" aria-hidden="true">→</span>
               </button>
               <div className="acc"><div><div className="acc__inner">
                 <p>{svc.desc}</p>
@@ -70,16 +69,14 @@ export default function Services() {
         </ul>
 
         <article className="explorer__panel tilt" aria-live="polite">
-          <div className="panel__frame" aria-hidden="true" />
           <div className="panel__top">
-            <span className="panel__idx mono">{pad(current + 1)}</span>
-            <span className="panel__tag mono">{s.tag}</span>
+            <span className="panel__idx mono">SERVICIO {pad(current + 1)} / {pad(SERVICES.length)}</span>
           </div>
           <div key={`i${current}`} className="panel__icon panel-anim"><ServiceIcon name={s.icon} /></div>
           <h3 key={`t${current}`} className="panel__title panel-anim"><Scramble text={s.title} /></h3>
           <p key={`d${current}`} className="panel__desc panel-anim">{s.desc}</p>
           <ul key={`f${current}`} className="panel__features panel-anim">{s.feat.map((f) => <li key={f}>{f}</li>)}</ul>
-          <button className="btn btn--primary magnetic" onClick={() => consult(s.id)}><span>Consultar este servicio</span> <i aria-hidden="true">→</i></button>
+          <button className="btn btn--primary" onClick={() => consult(s.id)}><span>Consultar este servicio</span> <i aria-hidden="true">→</i></button>
         </article>
       </div>
     </section>

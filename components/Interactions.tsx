@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 
-/** Efectos globales: aparición al hacer scroll, inclinación 3D y botones magnéticos. */
+/** Efectos globales: aparición al hacer scroll, inclinación 3D. */
 export default function Interactions() {
   useEffect(() => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -35,17 +35,6 @@ export default function Interactions() {
           el.style.transform = '';
           window.setTimeout(() => { el.style.transition = ''; }, 600);
         };
-        el.addEventListener('pointermove', move);
-        el.addEventListener('pointerleave', leave);
-        cleanups.push(() => { el.removeEventListener('pointermove', move); el.removeEventListener('pointerleave', leave); });
-      });
-
-      document.querySelectorAll<HTMLElement>('.magnetic').forEach((el) => {
-        const move = (e: PointerEvent) => {
-          const r = el.getBoundingClientRect();
-          el.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * 0.2}px, ${(e.clientY - r.top - r.height / 2) * 0.3}px)`;
-        };
-        const leave = () => { el.style.transform = ''; };
         el.addEventListener('pointermove', move);
         el.addEventListener('pointerleave', leave);
         cleanups.push(() => { el.removeEventListener('pointermove', move); el.removeEventListener('pointerleave', leave); });

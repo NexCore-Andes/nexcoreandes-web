@@ -42,7 +42,6 @@ export default function Process() {
   return (
     <section className="section process" id="proceso">
       <div className="section__head">
-        <p className="kicker mono reveal">02 / proceso</p>
         <h2 className="section__title reveal">De la idea al <span className="grad">lanzamiento</span>, en un circuito claro.</h2>
       </div>
       <div className="circuit" ref={wrap}>
@@ -59,10 +58,13 @@ export default function Process() {
           <div key={s.t} className={`step${shown[i] ? ' shown' : ''}${lit[i] ? ' lit' : ''}`} ref={(el) => { stepRefs.current[i] = el; }}>
             <span className="step__node" />
             <div className="step__card">
-              <span className="step__num mono">{String(i + 1).padStart(2, '0')}</span>
+              <div className="step__head">
+                <span className="step__num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                <span className="step__of mono">ETAPA {i + 1} DE {STEPS.length}</span>
+              </div>
               <h3>{s.t}</h3>
               <p>{s.d}</p>
-              <span className="step__meta mono">{s.m}</span>
+              <span className="step__bar" aria-hidden="true"><i style={{ width: `${((i + 1) / STEPS.length) * 100}%` }} /></span>
             </div>
           </div>
         ))}

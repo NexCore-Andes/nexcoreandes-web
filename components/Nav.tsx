@@ -31,7 +31,7 @@ export default function Nav() {
       </a>
       <nav className={`nav__links${open ? ' open' : ''}`} onClick={(e) => { if ((e.target as Element).closest('a')) setOpen(false); }}>
         {LINKS.map((l) => <a key={l.href} href={l.href}>{l.label}</a>)}
-        <a href="#contacto" className="nav__cta magnetic">Contacto <span aria-hidden="true">→</span></a>
+        <a href="#contacto" className="nav__cta">Contacto <span aria-hidden="true">→</span></a>
       </nav>
       <button className="nav__burger" aria-label={open ? 'Cerrar menú' : 'Abrir menú'} aria-expanded={open} onClick={() => setOpen(!open)}>
         <span /><span />

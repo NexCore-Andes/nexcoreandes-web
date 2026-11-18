@@ -14,7 +14,7 @@ export default function WhatsAppFloat() {
   }, []);
 
   return (
-    <a href={waLink('¡Hola NexCore Andes! 👋 Quiero hacer una consulta.')} className={`wa-float${show ? ' show' : ''}`}
+    <a href={waLink('¡Hola NexCore Andes! Quiero hacer una consulta.')} className={`wa-float${show ? ' show' : ''}`}
       target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp">
       <WhatsAppIcon />
       <span className="wa-float__label">¿Hablamos?</span>

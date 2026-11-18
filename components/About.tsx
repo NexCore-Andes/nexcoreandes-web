@@ -19,7 +19,6 @@ export default function About() {
     <section className="section about" id="nosotros">
       <div className="about__grid">
         <div className="about__text">
-          <p className="kicker mono reveal">03 / nosotros</p>
           <h2 className="section__title reveal">Tecnología con <span className="grad">propósito</span>.</h2>
           <p className="section__lead reveal">
             Somos NexCore Andes. Ayudamos a negocios y emprendimientos a transformar necesidades reales en soluciones digitales concretas.

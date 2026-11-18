@@ -17,7 +17,6 @@ export default async function Instagram() {
   return (
     <section className="section insta" id="instagram">
       <div className="section__head">
-        <p className="kicker mono reveal">04 / comunidad</p>
         <h2 className="section__title reveal">
           Seguinos en <a href={SITE.instagramUrl} target="_blank" rel="noopener" className="grad">@{SITE.instagram}</a>
         </h2>
@@ -42,7 +41,7 @@ export default async function Instagram() {
       </div>
 
       <div className="insta__cta reveal">
-        <a href={SITE.instagramUrl} target="_blank" rel="noopener" className="btn btn--ghost magnetic">
+        <a href={SITE.instagramUrl} target="_blank" rel="noopener" className="btn btn--ghost">
           <span>Ver más en Instagram</span> <i aria-hidden="true">→</i>
         </a>
       </div>
